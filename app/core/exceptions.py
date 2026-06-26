@@ -38,7 +38,7 @@ class BadRequestException(APIException):
 
 class UnprocessableEntityException(APIException):
     def __init__(self, message: str = "Unprocessable entity", details: dict = None):
-        super().__init__(message, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, details=details)
+        super().__init__(message, status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, details=details)
 
 
 async def api_exception_handler(request, exc: APIException):
@@ -55,7 +55,7 @@ async def validation_exception_handler(request, exc: RequestValidationError):
         errors[str(field)] = error["msg"]
 
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
         content={"success": False, "message": "Validation failed", "errors": errors},
     )
 

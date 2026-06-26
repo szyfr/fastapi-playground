@@ -1,8 +1,10 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import List
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
+
     # App
     APP_NAME: str = "FastAPI MVC"
     APP_VERSION: str = "1.0.0"
@@ -22,10 +24,6 @@ class Settings(BaseSettings):
     # M2M
     M2M_SECRET: str = "m2m-secret-change-in-production"
     M2M_ALGORITHM: str = "HS256"
-
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
 
 
 settings = Settings()

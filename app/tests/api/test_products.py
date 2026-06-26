@@ -12,9 +12,9 @@ async def test_list_products_empty(client: AsyncClient):
 
 
 @pytest.mark.asyncio
-async def test_create_product_validation_error(client: AsyncClient):
+async def test_create_product_validation_error(admin_client: AsyncClient):
     """Missing required fields should return 422."""
-    response = await client.post("/api/v1/products/", json={"name": "ab"})
+    response = await admin_client.post("/api/v1/products/", json={"name": "ab"})
     assert response.status_code == 422
     assert "errors" in response.json()
 
