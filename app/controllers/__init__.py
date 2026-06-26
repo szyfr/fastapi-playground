@@ -1,0 +1,3 @@
+from app.controllers.product_controller import ProductController
+from app.controllers.order_controller import OrderController
+from app.controllers.auth_controller import AuthController
